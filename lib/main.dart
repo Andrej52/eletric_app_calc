@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:electric_app/page1.dart';
-import 'package:electric_app/page2.dart';
+import 'package:eletric_app_calc/page2.dart';
+import 'package:eletric_app_calc/page1.dart';
 import 'package:flutter/material.dart';
 
 void main() {
