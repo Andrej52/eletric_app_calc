@@ -1,12 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-import 'package:eletric_app_calc/page2.dart';
-import 'package:eletric_app_calc/page1.dart';
 import 'package:flutter/material.dart';
+import 'calculator.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home:MyApp()
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,33 +11,84 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  String value = "";
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: 
-            AppBar(
-              title: const Text ('Calculator for electric'),
-            ),
-      body:Center(
-        child: 
-          Column(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              ElevatedButton(
-                onPressed: (){
+              // button which shows's formula for diameter/ max cord current
+              TextButton(
+                child: const Text('Zatažitelnost vodičov'),
+                onPressed: () {
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Page1()),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Calculator(value: "diameter")),
                   );
-              }, child: const Text('Page1')),
-              
-              ElevatedButton(
-                onPressed: (){
+                },
+              ),
+
+              // button which shows's formula for diameter/ max cord current
+              TextButton(
+                child: const Text('Vykon/oddber'),
+                onPressed: () {
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Ohm()),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Calculator(value: "power_usage")),
                   );
-              }, child: const Text('Page2'))
+                },
+              ),
+
+              // button which shows's formula for diameter/ max cord current
+              TextButton(
+                child: const Text("Ohm's_law"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Calculator(value: "ohm_law")),
+                  );
+                },
+              ),
+
+              // button which shows's formula for diameter/ max cord current
+              TextButton(
+                child: const Text("Odpory"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Calculator(value: "resistance")),
+                  );
+                },
+              ),
             ],
           ),
-        ),
-    );
+        ));
   }
 }
