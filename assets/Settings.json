@@ -1,0 +1,27 @@
+{
+    "Modes":
+    {
+        "LightMode":
+        {
+            "Background":"",
+            "FontColor":""
+        },
+        "DarkMode":
+        {
+            "Background":"",
+            "FontColor":""
+
+        },
+        "CustomMode":
+        {
+            "Background":"",
+            "FontColor":""
+        }
+    },
+    "Settings":
+    {
+        "Rotation":"False",
+        "Saving_calculatios": "True",
+        "ScreenMode":"LightMode"
+    }
+}
