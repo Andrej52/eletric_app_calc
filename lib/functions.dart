@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
+//import 'dart:io';
 import 'dart:math';
-
 import 'package:flutter/services.dart';
 
+// ignore: non_constant_identifier_names
 double calc_diam(type, data) {
   var diameter = data[0];
   var radius = pow((diameter / 2), 2);
@@ -12,10 +12,10 @@ double calc_diam(type, data) {
   if (data != null) {
     type == "solid" ? area : area = area * 0.8;
   }
-
   return area;
 }
 
+// ignore: non_constant_identifier_names
 double calc_Usage(type, data) {
   var var1 = data[0]; // Voltage
   var var2 = data[1]; // Current
@@ -36,6 +36,7 @@ double calc_Usage(type, data) {
   return result;
 }
 
+// ignore: non_constant_identifier_names
 double calc_resistance(type, data) {
   double result = 0;
 
@@ -51,18 +52,19 @@ double calc_resistance(type, data) {
   return result;
 }
 
-double suitable_wire() {
-  List array = [];
+// ignore: non_constant_identifier_names
+double suitable_wire(value) {
   double match = 0;
-  //Map<String, dynamic> wireprop = jsonDecode(jsonString);
-  File('resources/WireCap.json').readAsString();
+  var data = readJson("WireCap.json");
+  for (var i = 0; i < data.length; i++) {
+    if ((data['area'][i] > value) && (data['area'][i + 1] > value)) {
+      match = data['wire'][i + 1];
+    }
+  }
   return match;
 }
 
-void readJson()  {
-  final Future<String> response =  rootBundle.loadString('assets/WriteCap.json');
-  final data = json.decode(response as String);
+Map<String, dynamic> readJson(filename) {
+  final Future<String> response = rootBundle.loadString('assets/' + filename);
+  return json.decode(response as String);
 }
-/*
-
-*/
